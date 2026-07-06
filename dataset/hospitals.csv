@@ -1,0 +1,9 @@
+hospital_id,name,latitude,longitude,capacity_beds,safety_stock_ratio
+1,City General Hospital,40.7128,-74.006,450,0.2
+2,St. Jude Medical Center,40.725,-74.01,350,0.15
+3,Memorial Hospital,40.7306,-73.9352,500,0.25
+4,Regional Trauma Center,40.7589,-73.9851,600,0.3
+5,Valley Health Clinic,40.7061,-73.9969,120,0.15
+6,Metro Medical,40.7484,-73.9857,400,0.2
+7,Hope Children's Hospital,40.7829,-73.9654,250,0.15
+8,Mercy Medical Center,40.7,-74.05,300,0.2

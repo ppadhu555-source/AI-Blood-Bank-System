@@ -1,0 +1,5 @@
+component_id,name,shelf_life_days,storage_temp_celsius
+1,Whole Blood,35,2-6 C
+2,Red Blood Cells,42,2-6 C
+3,Fresh Frozen Plasma,365,-18 C or colder
+4,Platelets,5,20-24 C

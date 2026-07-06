@@ -1,0 +1,48 @@
+{
+    "best_model": "Linear Regression",
+    "features": [
+        "hospital_id",
+        "component_id",
+        "blood_group_encoded",
+        "dayofweek",
+        "month",
+        "year",
+        "demand_multiplier",
+        "emergency_flag",
+        "holiday_flag",
+        "capacity_beds",
+        "lag_1",
+        "lag_7",
+        "lag_30",
+        "rolling_mean_7",
+        "rolling_mean_30",
+        "demand_trend"
+    ],
+    "comparison": {
+        "Linear Regression": {
+            "MAE": 0.1568,
+            "RMSE": 0.5771,
+            "R2": 0.0069
+        },
+        "Decision Tree": {
+            "MAE": 0.16,
+            "RMSE": 0.614,
+            "R2": -0.124
+        },
+        "Random Forest": {
+            "MAE": 0.1758,
+            "RMSE": 0.5905,
+            "R2": -0.0395
+        },
+        "Gradient Boosting": {
+            "MAE": 0.154,
+            "RMSE": 0.579,
+            "R2": 0.0003
+        },
+        "XGBoost": {
+            "MAE": 0.153,
+            "RMSE": 0.5783,
+            "R2": 0.0028
+        }
+    }
+}
