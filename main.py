@@ -10,21 +10,32 @@ logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+def _find_project_python():
+    venv_python = os.path.join(BASE_DIR, ".venv", "Scripts", "python.exe") if os.name == "nt" else os.path.join(BASE_DIR, ".venv", "bin", "python")
+    if os.path.isfile(venv_python):
+        return venv_python
+    return sys.executable
+
+PROJECT_PYTHON = _find_project_python()
+
+
 def run_script(script_path, cwd=None):
     """Utility to run a python script as a subprocess."""
     abs_path = os.path.join(BASE_DIR, script_path)
-    logger.info(f"Executing script: {abs_path}")
+    logger.info(f"Executing script: {abs_path} using {PROJECT_PYTHON}")
     
-    result = subprocess.run([sys.executable, abs_path], cwd=cwd or BASE_DIR)
+    result = subprocess.run([PROJECT_PYTHON, abs_path], cwd=cwd or BASE_DIR)
     if result.returncode != 0:
         logger.error(f"Script failed with exit code: {result.returncode}")
         return False
     return True
 
+
 def init_database():
     """Initializes and seeds database with realistic mock data."""
     logger.info("--- Phase 1: Database & Dataset Seeding ---")
     return run_script("dataset/dataset_generator.py")
+
 
 def train_forecasting_pipeline():
     """Runs data preprocessing, feature engineering, and model training."""
@@ -69,9 +80,8 @@ def _find_streamlit_python():
     if _python_has_streamlit(sys.executable):
         return sys.executable
 
-    venv_python = os.path.join(BASE_DIR, ".venv", "Scripts", "python.exe") if os.name == "nt" else os.path.join(BASE_DIR, ".venv", "bin", "python")
-    if os.path.isfile(venv_python) and _python_has_streamlit(venv_python):
-        return venv_python
+    if PROJECT_PYTHON != sys.executable and _python_has_streamlit(PROJECT_PYTHON):
+        return PROJECT_PYTHON
 
     return sys.executable
 
